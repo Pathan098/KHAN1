@@ -262,101 +262,7 @@ def Public():
 
 		try:
 
-			cookie=input(" [+] Cookie : ")
-
-			data = requests.get("https://business.facebook.com/business_locations", headers = {"user-agent": "Mozilla/5.0 (Linux; Android 12.1.0; MI 8 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.86 Mobile Safari/537.36","referer": "https://www.facebook.com/","host": "business.facebook.com","origin": "https://business.facebook.com","upgrade-insecure-requests" : "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7","cache-control": "max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8","content-type":"text/html; charset=utf-8"}, cookies = {"cookie":cookie}) 
-
-			find_token = re.search("(EAAG\w+)", data.text)
-
-			ken=open(".token.txt", "w").write(find_token.group(1))
-
-			print (" [] Login Successful")
-
-			login()
-
-		except Exception as e: 
-
-			os.system("rm -f .token.txt")
-
-			print( ' [×] Login Failed ')
-
-			time.sleep(2.5)
-
-			login()
-
-			exit()
-
-def public_menu():
-
-	try:
-
-		token = open('.token.txt','r').read()
-
-	except IOError:
-
-		exit()
-
-	clear()
-
-	print(logo)
-
-	pil = input('\n [+] Enter ID Target : ')
-
-	try:
-
-		koh2 = requests.get('https://graph.facebook.com/v2.0/'+pil+'?fields=friends.limit(5000)&access_token='+tokenku[0]).json()
-
-		for pi in koh2['friends']['data']:
-
-			id.append(pi['id']+'|'+pi['name'])
-
-		print(' [] Total : '+str(len(id)))
-
-		setting()
-
-	except requests.exceptions.ConnectionError:
-
-		print (' [#] Connection Time Out')
-
-		exit()
-
-	except (KeyError,IOError):
-
-		print(' [!] Not public Or Token Expire')
-
-		exit()
-
-def File():
-
-			clear()
-
-			print(logo)
-
-			try:
-
-				fileX = input ('\n [+] Enter file path : ') 
-
-				for line in open(fileX, 'r').readlines():
-
-					id.append(line.strip())
-
-				setting()
-
-			except IOError:
-
-				exit("\n [!] file %s not found"%(fileX))
-
-
-
-def setting():
-
-	hu = ("2")
-
-	if hu in ['1','01']:
-
-		for tua in sorted(id):
-
-			id2.append(tua)
+			
 
 
 
@@ -976,7 +882,101 @@ class Main:
 			  "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)",
 
   "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)",
+cookie=input(" [+] Cookie : ")
 
+			data = requests.get("https://business.facebook.com/business_locations", headers = {"user-agent": "Mozilla/5.0 (Linux; Android 12.1.0; MI 8 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.86 Mobile Safari/537.36","referer": "https://www.facebook.com/","host": "business.facebook.com","origin": "https://business.facebook.com","upgrade-insecure-requests" : "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7","cache-control": "max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8","content-type":"text/html; charset=utf-8"}, cookies = {"cookie":cookie}) 
+
+			find_token = re.search("(EAAG\w+)", data.text)
+
+			ken=open(".token.txt", "w").write(find_token.group(1))
+
+			print (" [] Login Successful")
+
+			login()
+
+		except Exception as e: 
+
+			os.system("rm -f .token.txt")
+
+			print( ' [×] Login Failed ')
+
+			time.sleep(2.5)
+
+			login()
+
+			exit()
+
+def public_menu():
+
+	try:
+
+		token = open('.token.txt','r').read()
+
+	except IOError:
+
+		exit()
+
+	clear()
+
+	print(logo)
+
+	pil = input('\n [+] Enter ID Target : ')
+
+	try:
+
+		koh2 = requests.get('https://graph.facebook.com/v2.0/'+pil+'?fields=friends.limit(5000)&access_token='+tokenku[0]).json()
+
+		for pi in koh2['friends']['data']:
+
+			id.append(pi['id']+'|'+pi['name'])
+
+		print(' [] Total : '+str(len(id)))
+
+		setting()
+
+	except requests.exceptions.ConnectionError:
+
+		print (' [#] Connection Time Out')
+
+		exit()
+
+	except (KeyError,IOError):
+
+		print(' [!] Not public Or Token Expire')
+
+		exit()
+
+def File():
+
+			clear()
+
+			print(logo)
+
+			try:
+
+				fileX = input ('\n [+] Enter file path : ') 
+
+				for line in open(fileX, 'r').readlines():
+
+					id.append(line.strip())
+
+				setting()
+
+			except IOError:
+
+				exit("\n [!] file %s not found"%(fileX))
+
+
+
+def setting():
+
+	hu = ("2")
+
+	if hu in ['1','01']:
+
+		for tua in sorted(id):
+
+			id2.append(tua)
   "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; CMDTDF; .NET4.0C; .NET4.0E; GWX:QUALIFIED)",
 
   "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:40.0) Gecko/20100101 Firefox/40.0.2 Waterfox/40.0.2",
@@ -1029,48 +1029,8 @@ class Main:
 
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
 
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/600.6.3 (KHTML, like Gecko) Version/8.0.6 Safari/600.6.3",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.107 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36 OPR/31.0.1889.174",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2503.0 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/600.8.9 (KHTML, like Gecko)",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/601.1.56 (KHTML, like Gecko) Version/9.0 Safari/601.1.56",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36",
-
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.6.3 (KHTML, like Gecko) Version/7.1.6 Safari/537.85.15",
-
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; Trident/7.0; rv:11.0) like Gecko",
-
-  "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; MAARJS; rv:11.0) like Gecko",
-
-  "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; MALNJS; rv:11.0) like Gecko",
-
-  "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; MDDCJS; rv:11.0) like Gecko",
-
-  "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36",
-
-  "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36",
-
+  "
+  "
   "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER",
 
   "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36",
