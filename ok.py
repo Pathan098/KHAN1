@@ -20,7 +20,7 @@ N = '\x1b[0m'
 
 import os
 
-try: 😅😅
+try: 
 
 	import requests
 
